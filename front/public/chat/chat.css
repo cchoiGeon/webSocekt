@@ -1,0 +1,111 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: white; /* 배경색을 흰색으로 변경 */
+}
+
+.container {
+    width: 100%;
+    max-width: 600px;
+    height: 100%;
+    background-color: white; /* 배경색을 흰색으로 변경 */
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.chat-container {
+    flex: 1; /* 전체 컨테이너를 채우도록 설정 */
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.chat-header {
+    padding: 16px;
+    background-color: #4a76a8;
+    color: white;
+    border-radius: 8px 8px 0 0;
+    text-align: center;
+}
+
+.chat-box {
+    flex: 1; /* 남은 공간을 채우도록 설정 */
+    padding: 16px;
+    overflow-y: auto; /* 스크롤을 허용 */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 60%; /* 높이를 늘려줌 */
+}
+
+.chat-message {
+    margin-bottom: 12px;
+    padding: 8px 12px;
+    background-color: #e0f7fa;
+    border-radius: 16px;
+    max-width: 70%;
+    word-wrap: break-word;
+    position: relative;
+    display: inline-block;
+}
+
+.chat-message.sent {
+    background-color: #dcedc8;
+    align-self: flex-end;
+    border-bottom-right-radius: 0;
+    text-align: right;
+}
+
+.chat-message.received {
+    background-color: #e0f7fa;
+    align-self: flex-start;
+    border-bottom-left-radius: 0;
+    text-align: left;
+}
+
+.chat-input {
+    display: flex;
+    gap: 10px;
+    padding: 10px;
+    border-top: 1px solid #e0e0e0;
+    background-color: #f9f9f9;
+    position: sticky;
+    bottom: 0;
+}
+
+#message-input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+}
+
+#send-button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #4a76a8;
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+#send-button:hover {
+    background-color: #3b5c7e;
+}
+
+@media (min-width: 768px) {
+    .container {
+        max-width: 400px;
+    }
+}
