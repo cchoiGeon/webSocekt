@@ -1,6 +1,5 @@
 const signupUser = async(user_id, password) => {
-  try {
-    console.log(user_id, password);
+  try {;
     const response = await fetch('http://localhost:3000/signup', {
       method: 'POST',
       headers: {

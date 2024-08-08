@@ -28,12 +28,27 @@ document.addEventListener('checkJsComplete', () => {
     }
   
     // Send 버튼 클릭 시 메시지 전송
-    sendButton.addEventListener('click', () => {
+    sendButton.addEventListener('click', async() => {
     const message = messageInput.value;
     if (message) {
         // 메시지를 특정 방으로 전송
-        chatSocket.emit('chat message', { roomId, message });
-        messageInput.value = ''; // 입력창 초기화
+        const response = await fetch('http://localhost:3000/chat', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          credentials: 'include', // 쿠키 포함 설정
+          body: JSON.stringify({message,roomId}),
+        });
+        const result = await response.json();
+        console.log(result);
+        if(result.isSuccess){
+          chatSocket.emit('chat message', { roomId, message });
+          messageInput.value = ''; // 입력창 초기화 
+        }else{
+          alert("에러 발생");
+          messageInput.value = ''; // 입력창 초기화 
+        }
     }
     });
   

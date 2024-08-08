@@ -6,7 +6,12 @@ document.addEventListener('DOMContentLoaded', async () => {
         const result = await response.json();
         if(result.isSuccess){
             window.location.href = `/chat/${result.result}`
-        }else{
+        }
+        if(result.code == "403"){
+            alert("토큰을 재발급 받아주세요");
+            window.location.href = "/login"
+        }
+        if(result.code == "404"){
             alert("채팅방이 존재하지 않습니다.");
         }
     }catch(err){

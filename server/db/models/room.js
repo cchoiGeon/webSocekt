@@ -9,16 +9,16 @@ export class Room extends Sequelize.Model {
           primaryKey: true,
           autoIncrement: true,
         },
-        user1Id: {
-          type: DataTypes.INTEGER,
+        user1_id: {
+          type: DataTypes.UUID, // UUID 타입으로 변경
           allowNull: false,
           references: {
             model: 'users',
             key: 'uuid',
           },
         },
-        user2Id: {
-          type: DataTypes.INTEGER,
+        user2_id: {
+          type: DataTypes.UUID, // UUID 타입으로 변경
           allowNull: false,
           references: {
             model: 'users',
@@ -36,7 +36,7 @@ export class Room extends Sequelize.Model {
   }
 
   static associate(models) {
-    this.belongsTo(models.User, { as: 'User1', foreignKey: 'user1Id' });
-    this.belongsTo(models.User, { as: 'User2', foreignKey: 'user2Id' });
+    this.belongsTo(models.User, { as: 'User1', foreignKey: 'user1_id' });
+    this.belongsTo(models.User, { as: 'User2', foreignKey: 'user2_id' });
   }
 }

@@ -5,8 +5,6 @@ import { status } from '../config/response.status.js';
 export async function LoginCheck(req,res,next){
     try{
         const token = req.cookies.accessToken;
-        
-        console.log(token);
 
         if (!token) {
             return res.send(response(status.TOKEN_NOT_PROVIDED));

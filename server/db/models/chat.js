@@ -9,16 +9,16 @@ export class Chat extends Sequelize.Model {
           primaryKey: true,
           autoIncrement: true,
         },
-        send: {
+        room_id: {
           type: DataTypes.INTEGER,
           allowNull: false,
           references: {
-            model: 'users',
-            key: 'uuid',
+            model: 'rooms',
+            key: 'id',
           },
         },
-        recive: {
-          type: DataTypes.INTEGER,
+        sender_id: {
+          type: DataTypes.UUID,
           allowNull: false,
           references: {
             model: 'users',
@@ -40,7 +40,7 @@ export class Chat extends Sequelize.Model {
   }
 
   static associate(models) {
-    this.belongsTo(models.User, { as: 'User1', foreignKey: 'user1Id' });
-    this.belongsTo(models.User, { as: 'User2', foreignKey: 'user2Id' });
+    this.belongsTo(models.User, { as: 'Sender', foreignKey: 'sender_id' });
+    this.belongsTo(models.Room, { as: 'Room', foreignKey: 'room_id' });
   }
 }

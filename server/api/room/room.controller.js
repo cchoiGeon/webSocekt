@@ -6,18 +6,20 @@ import db from "../../db/index.js";
 export async function GetRoomId(req, res) {
     try {
         const uuid = res.locals.uuid;
+        if(!uuid){
+            return res.send(response(status.BAD_REQUEST));
+        }
         const isExistUser = await db.Room.findOne({
             where: {
               [Op.or]: [
-                { user1Id: uuid },
-                { user2Id: uuid },
+                { user1_id: uuid },
+                { user2_id: uuid },
               ],
             },
         });
         if(!isExistUser){
             return res.send(response(status.BAD_REQUEST));
         }
-        console.log(isExistUser.id);
         return res.send(response(status.SUCCESS,isExistUser.id));
     } catch (err) {
         console.error(err);

@@ -10,6 +10,7 @@ import { signupRouter } from './routes/signup.js';
 import { loginRouter } from './routes/login.js';
 import { LoginCheck } from './middlewares/logincheck.js';
 import { roomRouter } from './routes/room.js';
+import { chatRouter } from './routes/chat.js';
 
 await init();
 
@@ -27,7 +28,7 @@ app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/roomid",LoginCheck,roomRouter)
-
+app.use("/chat",LoginCheck,chatRouter)
 app.use('/signup',signupRouter);
 app.use('/login',loginRouter);
 
